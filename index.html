@@ -1,0 +1,56 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Banca Digital - Transferencias</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    .form-group { margin-bottom: 10px; }
+    #confirmation { margin-top: 20px; padding: 10px; border: 1px solid green; display: none; }
+  </style>
+</head>
+<body>
+  <h2>Realizar Transferencia</h2>
+  <div id="accountInfo">Cuenta Origen: Ahorros ****4589 | Saldo: $2.500.000 COP</div>
+  <br>
+  <form id="transferForm" onsubmit="event.preventDefault(); processTransfer();">
+    <div class="form-group">
+      <label>Banco Destino:</label>
+      <select id="destinationBank">
+        <option value="">Seleccione</option>
+        <option value="Banco Prueba">Banco Prueba</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Cuenta Destino:</label>
+      <input type="text" id="destinationAccount" />
+    </div>
+    <div class="form-group">
+      <label>Tipo de Cuenta:</label>
+      <select id="accountType">
+        <option value="SAVINGS">Ahorros</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Monto:</label>
+      <input type="number" id="amount" />
+    </div>
+    <button type="submit" id="btnSubmit">Transferir</button>
+  </form>
+
+  <div id="confirmation">
+    <h3>¡Transferencia Exitosa!</h3>
+    <p>Estado: <span class="status-success">SUCCESS</span></p>
+    <p>Número de Transacción: <span id="transactionId">TRX-987654</span></p>
+    <p>Cuenta Origen: <span id="confirmedSourceAccount">4589</span></p>
+    <p>Valor: $<span id="confirmedAmount">150000</span> COP</p>
+  </div>
+
+  <script>
+    function processTransfer() {
+      document.getElementById('confirmation').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
