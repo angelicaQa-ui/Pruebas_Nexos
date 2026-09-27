@@ -1,25 +1,29 @@
-# Prueba Técnica QA Automation
+Prueba Técnica - QA Automation
+¡Hola! En este repositorio encuentras la solución completa a la prueba técnica de QA. Aquí combiné la automatización web y de APIs con el análisis técnico y funcional de pruebas.
 
-Este repositorio contiene la resolución integral de la prueba técnica para el rol de QA, abarcando automatización web, validación de APIs y análisis de calidad de software (ISTQB, Appium, JMeter).
+## ¿Qué encuentras en este proyecto?
+1. Automatización Web (Playwright):
+Automatización de un flujo de transferencias bancarias (ejecutado de manera local). Organicé el código aplicando el patrón Page Object Model (POM) para que las pruebas sean fáciles de leer, mantener y escalar.
 
-## 🚀 Contenido del Repositorio
+2. Pruebas de API (Postman):
+Encontrarás la colección exportada en formato .json. Incluye pruebas de integración para escenarios exitosos y de error, validando códigos de estado HTTP, tiempos de respuesta y la estructura del payload.
 
-1. **Automatización Web (Playwright):** Implementación del patrón de diseño Page Object Model (POM) para validar un flujo de transferencia bancaria simulado de forma local.
-2. **Pruebas de API (Postman):** Colección exportada (`.json`) con las validaciones y assertions solicitados para escenarios exitosos y fallidos (HTTP Status, tiempo de respuesta, validación de payload).
-3. **Análisis Teórico y Casos Manuales (PDF):** Documento adjunto con la matriz de pruebas manuales y las respuestas analíticas sobre rendimiento (JMeter), automatización móvil (Appium) y conceptos ISTQB.
+3. Casos Manuales y Parte Teórica (PDF):
+Documento en formato PDF con la matriz de pruebas manuales y el análisis técnico sobre rendimiento (JMeter), automatización móvil (Appium) y conceptos de ISTQB.
+Nota: Encuentras este documento guardado dentro de la carpeta /docs de este repositorio y también adjunto en el correo de entrega.
 
-## 🛠️ Tecnologías Utilizadas
+## Tecnologías Utilizadas
 * **Playwright** (JavaScript)
 * **Node.js**
 * **Postman**
 * **Patrón de diseño:** Page Object Model (POM)
 
-## ⚙️ Requisitos Previos
+## Requisitos Previos
 Para ejecutar las pruebas web en tu máquina local, asegúrate de tener instalado:
 * [Node.js](https://nodejs.org/) (versión 14 o superior).
 * Git.
 
-## 💻 Instrucciones de Instalación y Ejecución
+## Instrucciones de Instalación y Ejecución
 
 **1. Clonar el repositorio:**
 ```bash
