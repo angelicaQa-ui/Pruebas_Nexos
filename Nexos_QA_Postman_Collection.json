@@ -1,0 +1,115 @@
+{
+	"info": {
+		"name": "Prueba Técnica - Nexos QA",
+		"description": "Colección de pruebas de API para el flujo de transferencias bancarias.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Transferencia Exitosa",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Validar Código HTTP",
+							"pm.test(\"Status code es 200 o 201\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							"",
+							"// Validar Tiempo de respuesta",
+							"pm.test(\"Tiempo de respuesta es menor a 2000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});",
+							"",
+							"// Validar Estado, Número de transacción y Valor transferido",
+							"pm.test(\"Respuesta contiene los datos de confirmación esperados\", function () {",
+							"    const responseData = pm.response.json();",
+							"    ",
+							"    pm.expect(responseData.status).to.eql(\"SUCCESS\");",
+							"    pm.expect(responseData).to.have.property(\"transactionId\").that.is.not.empty;",
+							"    pm.expect(responseData.amount).to.eql(150000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"sourceAccount\": \"4589\",\n  \"destinationAccount\": \"987654321\",\n  \"destinationBank\": \"Banco Prueba\",\n  \"accountType\": \"SAVINGS\",\n  \"amount\": 150000\n}"
+				},
+				"url": {
+					"raw": "https://api.bancoprueba.com/transfers",
+					"protocol": "https",
+					"host": [
+						"api",
+						"bancoprueba",
+						"com"
+					],
+					"path": [
+						"transfers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2. Transferencia Inválida (Valor Negativo)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Validar rechazo correcto",
+							"pm.test(\"Retorna 400 Bad Request al enviar valor inválido\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"// Validar mensaje de estado",
+							"pm.test(\"El mensaje de estado indica ERROR\", function () {",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData.status).to.eql(\"ERROR\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"sourceAccount\": \"4589\",\n  \"destinationAccount\": \"987654321\",\n  \"destinationBank\": \"Banco Prueba\",\n  \"accountType\": \"SAVINGS\",\n  \"amount\": -50000\n}"
+				},
+				"url": {
+					"raw": "https://api.bancoprueba.com/transfers",
+					"protocol": "https",
+					"host": [
+						"api",
+						"bancoprueba",
+						"com"
+					],
+					"path": [
+						"transfers"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
